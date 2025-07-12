@@ -15,7 +15,7 @@ export default function DataContextProvider({ children }) {
     try {
       const snapshot = await getDocs(transactionsRef);
       return snapshot.docs.map((doc) => {
-        return { id: doc.id, ...doc.data() };
+        return doc.data();
       });
     } catch (err) {
       return "some err", err;
@@ -31,7 +31,7 @@ export default function DataContextProvider({ children }) {
       const docRef = await addDoc(transactionsRef, newObj);
       await setDoc(
         docRef,
-        { ...newObj, transacionId: docRef.id },
+        { ...newObj, transactionId: docRef.id },
         { merge: true }
       );
     } catch (err) {

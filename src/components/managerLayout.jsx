@@ -6,6 +6,7 @@ export default function ManagerLayout() {
   const { type } = useParams();
   const { data, isPending, error } = useContext(DataContext);
   console.log(data);
+  ``;
   return (
     <>
       <div className="box border relative  min-h-screen my-5 border-neutral-800 px-5 py-2 overflow-hidden">
@@ -22,12 +23,10 @@ export default function ManagerLayout() {
           <div className="">
             {data?.map((items, idx) =>
               type === "all" || items?.type === type ? (
-                <Link key={idx} to={`transaction/${items?.transacionId}`}>
+                <Link key={idx} to={`transaction/${items?.transactionId}`}>
                   <div
                     key={idx}
-                    className={`border border-neutral-700 rounded-md p-3 my-2 flex justify-between items-center ${
-                      items?.type == "sold" && "bg-neutral-700"
-                    }`}
+                    className={`border border-neutral-700 rounded-md p-3 my-2 flex justify-between items-center`}
                   >
                     <span>{items?.companyName}</span>
                     <span>{items?.type} </span>
