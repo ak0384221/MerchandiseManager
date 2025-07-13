@@ -7,10 +7,17 @@ import ConfirmTransactionModal from "../portals/confirmTransaction";
 
 export default function TransactionForm() {
   const { addNewItem } = useContext(DataContext);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, watch } = useForm();
   const [isWarningOpen, setWarningOpen] = useState(false);
   const [data, setData] = useState();
   const navigate = useNavigate();
+
+  const totalPaid = watch("totalPaid") || 0;
+  const quantity = watch("quantity") || 0;
+  const unitPrice = watch("unitPrice") || 0;
+  const total = Number(quantity) * Number(unitPrice);
+  const due = Number(total) - Number(totalPaid);
+
   function onSubmit(data) {
     const finalData = {
       ...data,
@@ -23,7 +30,7 @@ export default function TransactionForm() {
 
   return (
     <>
-      <div className=" w-4/5 mx-auto  py-5 ">
+      <div className=" w-4/5 md:w-3/5 lg:w-1/2  mx-auto  py-5 ">
         <Form
           onSubmit={handleSubmit(onSubmit)}
           method="post"
@@ -39,7 +46,7 @@ export default function TransactionForm() {
               <label className="block mb-1 font-medium">Company Name</label>
               <input
                 {...register("companyName")}
-                className="w-full focus:outline-0 border-b border-neutral-300 "
+                className="w-full px-3 focus:outline-0 border-b border-neutral-300 "
               />
             </div>
             <label className="block mb-1 font-medium my-4">
@@ -60,7 +67,7 @@ export default function TransactionForm() {
             <label className="block mb-1 font-medium">Product Name</label>
             <input
               {...register("product")}
-              className="w-full focus:outline-0 border-b border-neutral-300 "
+              className="w-full px-3 focus:outline-0 border-b border-neutral-300 "
             />
           </div>
 
@@ -70,7 +77,7 @@ export default function TransactionForm() {
               {...register("quantity")}
               type="number"
               onWheel={(e) => e.target.blur()}
-              className="w-full focus:outline-0 border-b border-neutral-300 "
+              className="w-full px-3 focus:outline-0 border-b border-neutral-300 "
             />
           </div>
 
@@ -80,19 +87,25 @@ export default function TransactionForm() {
               {...register("unitPrice")}
               type="number"
               onWheel={(e) => e.target.blur()}
-              className="w-full focus:outline-0 border-b border-neutral-300 "
+              className="w-full px-3 focus:outline-0 border-b border-neutral-300 "
             />
           </div>
 
           <div>
-            <label className="block mb-1 font-medium">Total Paid</label>
+            <span className="text-xs text-neutral-300 my-2">
+              Total amount : {total.toLocaleString()}
+            </span>
+            <label className="block mb-1 font-medium">Pay Amount</label>
             <input
               {...register("totalPaid")}
               type="number"
               onWheel={(e) => e.target.blur()}
-              className="w-full focus:outline-0 border-b border-neutral-300 "
+              className="w-full px-3 focus:outline-0 border-b border-neutral-300 "
             />
           </div>
+          <span className="text-xs text-neutral-300 my-2">
+            Due amount : {due.toLocaleString()}
+          </span>
 
           <div>
             <label className="block mb-1 font-medium">Payment Method</label>
@@ -106,7 +119,7 @@ export default function TransactionForm() {
             </div>
           </div>
 
-          <button className="w-full active:scale-80 transition-all bg-blue-600 text-white py-2  hover:bg-blue-700 ">
+          <button className="w-full active:scale-80 transition-all bg-[#09747c] text-white py-2  hover:bg-[#4e8d8d] ">
             Submit
           </button>
         </Form>

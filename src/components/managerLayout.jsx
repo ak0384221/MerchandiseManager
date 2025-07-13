@@ -6,8 +6,6 @@ import { FaCirclePlus } from "react-icons/fa6";
 export default function ManagerLayout() {
   const { type } = useParams();
   const { data, isPending, error } = useContext(DataContext);
-  console.log(data);
-  ``;
   return (
     <>
       <div className="box  relative  min-h-screen  border-neutral-800 px-5 py-2 overflow-hidden">
