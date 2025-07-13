@@ -38,10 +38,7 @@ export default function AdminPannel() {
     <>
       <nav className=" w-full print:hidden py-2  ">
         <div className="logo  text-4xl font-Aladin text-center space-x-2 p-4 ">
-          <span>M</span>
-          <span>Manager</span>
-          <span>Admin</span>
-          <span>Pannel</span>
+          <span>M Pannel</span>
         </div>
         {/* <ul className="flex justify-evenly uppercase font-Aladin py-2 border-neutral-800">
           <li className=" w-max px-2 cursor-pointer  ">
@@ -73,21 +70,17 @@ export default function AdminPannel() {
         </ul> */}
       </nav>
       <div className="updates">
-        <div className="font-Inter font-bold text-3xl text-center">
-          Updates Center
-        </div>
         <div className="box min-h-screen px-5 py-4 overflow-hidden">
           {isPending && <div>Loading...</div>}
 
           {data && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4  p-5">
               {data.map((items, idx) => (
                 <Link key={idx} to={`transaction/${items?.transactionId}`}>
                   <div
-                    className={`bg-[#0b393f] rounded-lg shadow-md p-4 font-Ubuntu text-white space-y-2 hover:shadow-lg transition-all duration-200 ${
-                      items?.state?.toLowerCase().trim() === "due"
-                        ? "border border-[#940139]"
-                        : "border border-transparent"
+                    className={`bg-[#116D6E] hover:bg-[#116c6ec2] rounded-sm p-4  text-sm font-Ubuntu text-white space-y-2 transition-all duration-200 ${
+                      items?.state?.toLowerCase().trim() === "due" &&
+                      "border-2 border-[#a01f1f]"
                     }`}
                   >
                     <div className="text-lg font-semibold truncate">
@@ -95,19 +88,18 @@ export default function AdminPannel() {
                     </div>
 
                     <div>
-                      <span className="font-medium">Product:</span>{" "}
+                      <span className="">Product:</span>{" "}
                       <span className="truncate">{items?.product}</span>
                     </div>
 
                     <div>
-                      <span className="font-medium">Quantity:</span>{" "}
-                      {items?.quantity}
+                      <span className="">Quantity:</span> {items?.quantity}
                     </div>
 
                     <div>
-                      <span className="font-medium">Status</span>{" "}
+                      <span className="">Status</span>{" "}
                       <span
-                        className={`${
+                        className={`bg-white px-1 font-bold mx-1  ${
                           items?.state?.toLowerCase().trim() === "due"
                             ? "text-red-400"
                             : "text-green-400"
@@ -118,17 +110,17 @@ export default function AdminPannel() {
                     </div>
 
                     <div>
-                      <span className="font-medium">Transaction Date:</span>{" "}
+                      <span className="">Transaction Date:</span>{" "}
                       {formatDate(items?.date)}
                     </div>
 
                     <div>
-                      <span className="font-medium">Updates:</span>{" "}
+                      <span className="">Updates:</span>{" "}
                       {items?.updateHistory?.length || 0}
                     </div>
 
                     {/* <div>
-                      <span className="font-medium">Last Update:</span>{" "}
+                      <span className="">Last Update:</span>{" "}
                       {items?.updateHistory?.length
                         ? formatDate(
                             items?.updateHistory[

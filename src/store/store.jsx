@@ -72,6 +72,7 @@ export default function DataContextProvider({ children }) {
       paymentAmount,
       paymentMethod,
       InCharge: updatedBy,
+      prevDue: totalDue,
       newDue: totalDue - paymentAmount,
     };
 

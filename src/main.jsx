@@ -18,6 +18,7 @@ const UpdateTransaction = lazy(() =>
 //
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AdminPannel from "./components/AdminPannel/admin.jsx";
+import History from "./components/AdminPannel/history.jsx";
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
@@ -71,6 +72,7 @@ const router = createBrowserRouter([
     ],
   },
   { path: "/m-manager/secret/alahomora", element: <AdminPannel /> },
+  { path: "/m-manager/secret/alahomora/transaction/:id", element: <History /> },
 ]);
 
 createRoot(document.getElementById("root")).render(

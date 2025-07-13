@@ -14,7 +14,7 @@ export default function ConfirmTransactionModal({
 
   return ReactDOM.createPortal(
     <div className="fixed inset-0 backdrop-blur-2xl flex items-center justify-center z-20 w-full mx-auto">
-      <div className=" bg-[#06484e] rounded-lg w-4/5  p-6">
+      <div className=" bg-[#06484e] rounded-lg w-4/5 md:w-3/5 lg:w-1/2  p-6">
         <h2 className="text-xl font-bold mb-4">Confirm Transaction Details</h2>
 
         <div className="space-y-2 text-sm">
