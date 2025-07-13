@@ -30,6 +30,14 @@ export default function DataContextProvider({ children }) {
       throw err;
     }
   }
+  function formatDate(timestamp) {
+    const date = timestamp.toDate(); // Convert Firestore Timestamp to JS Date
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // JS months are 0-indexed
+    const year = date.getFullYear().toString().slice(-2); // Last 2 digits
+
+    return `${day}/${month}/${year}`;
+  }
 
   async function addNewItem(obj) {
     const newObj = {
@@ -85,7 +93,14 @@ export default function DataContextProvider({ children }) {
 
   return (
     <DataContext.Provider
-      value={{ data, isPending, error, addNewItem, updateTransaction }}
+      value={{
+        data,
+        isPending,
+        error,
+        addNewItem,
+        updateTransaction,
+        formatDate,
+      }}
     >
       {children}
     </DataContext.Provider>

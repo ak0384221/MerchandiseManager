@@ -2,10 +2,12 @@ import { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { DataContext } from "../store/store";
 import { FaCirclePlus } from "react-icons/fa6";
+import { Timestamp } from "firebase/firestore";
 
 export default function ManagerLayout() {
   const { type } = useParams();
-  const { data, isPending, error } = useContext(DataContext);
+  const { data, isPending, error, formatDate } = useContext(DataContext);
+
   return (
     <>
       <div className="box  relative  min-h-screen  border-neutral-800 px-5 py-2 overflow-hidden">
@@ -22,7 +24,10 @@ export default function ManagerLayout() {
                 <Link key={idx} to={`transaction/${items?.transactionId}`}>
                   <div
                     key={idx}
-                    className=" bg-[#0B525B] text-sm rounded-md p-3 my-2 flex justify-between items-center gap-3 font-Ubuntu capitalize  "
+                    className={`bg-[#0b393f] text-sm rounded-sm p-3 my-2 flex justify-between items-center gap-3 font-Ubuntu capitalize ${
+                      items?.state?.toLowerCase().trim() === "due" &&
+                      " border-1 border-[#940139]"
+                    } `}
                   >
                     <span className="w-40 truncate">{items?.companyName}</span>
                     <span className="w-24 truncate  text-sm ">
@@ -31,13 +36,9 @@ export default function ManagerLayout() {
                     <span className="w-20 truncate">{items?.quantity}</span>
                     <span className="w-32 truncate">{items?.product}</span>
                     <span
-                      className={`w-20 text-center truncate px-2 py-1 rounded-sm uppercase text-sm ${
-                        items?.state?.toLowerCase().trim() === "paid"
-                          ? "bg-green-700"
-                          : "bg-red-800"
-                      }`}
+                      className={`w-20 text-center truncate px-2 py-1 rounded-sm uppercase text-sm `}
                     >
-                      {items?.state}
+                      {formatDate(items?.date)}
                     </span>
                   </div>
                 </Link>

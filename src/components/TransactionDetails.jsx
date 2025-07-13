@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import Loader from "./loader";
 
 export default function TransactionDetails({ data }) {
   let totalPrice = data?.unitPrice * data?.quantity;
   let totalDue = totalPrice - data?.totalPaid;
   return (
     <>
-      <div className="w-full  mx-auto p-6 bg-[#065A60] text-sm font-Inter  ">
+      <div className="w-full  mx-auto p-6 bg-[#043235] text-sm font-Inter  ">
         <h2 className="text-2xl font-bold mb-4  my-2">Transaction Details</h2>
         <div className="space-y-2">
           <div className="flex justify-between">
@@ -31,7 +32,7 @@ export default function TransactionDetails({ data }) {
           <div className="flex justify-between">
             <span className="font-medium">State:</span>
             <span
-              className={`px-2 ${
+              className={`px-2  ${
                 data?.state?.toLowerCase() === "paid"
                   ? "bg-green-700"
                   : "bg-red-700"
@@ -85,7 +86,7 @@ export default function TransactionDetails({ data }) {
         )}
         <button
           onClick={() => window.print()}
-          className="w-25 h-8  bg-[#16828a]  rounded-sm hover:scale-95 active:scale-85 transition-all"
+          className="w-25 flex justify-center items-center h-8  bg-[#094347]  rounded-sm hover:bg-[#395d66fa] active:scale-85 transition-all"
         >
           Print
         </button>

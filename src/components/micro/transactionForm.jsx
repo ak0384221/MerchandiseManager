@@ -34,7 +34,7 @@ export default function TransactionForm() {
         <Form
           onSubmit={handleSubmit(onSubmit)}
           method="post"
-          className=" mx-auto p-5 bg-[#065A60] space-y-4  shadow-md "
+          className=" mx-auto p-5 bg-[#043235] space-y-4  shadow-md "
         >
           <IoArrowBackCircle
             className="text-4xl mb-5 active:scale-85 transition-all"
@@ -119,7 +119,7 @@ export default function TransactionForm() {
             </div>
           </div>
 
-          <button className="w-full active:scale-80 transition-all bg-[#09747c] text-white py-2  hover:bg-[#4e8d8d] ">
+          <button className="w-full active:scale-80 transition-all bg-[#074b50] text-white py-2  hover:bg-[#2e5858] ">
             Submit
           </button>
         </Form>
