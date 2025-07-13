@@ -2,8 +2,12 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
-    <nav>
-      <ul className="flex justify-evenly border py-2 border-neutral-800">
+    <nav className=" w-full fixed top-0 left-0 backdrop-blur-xl h-[20vh]  z-10 ">
+      <div className="logo  text-4xl font-Aladin text-center space-x-2 p-4 ">
+        <span>M</span>
+        <span>Manager</span>
+      </div>
+      <ul className="flex justify-evenly uppercase font-Aladin py-2 border-neutral-800">
         <li className=" w-max px-2 cursor-pointer  ">
           <NavLink
             to="/m-manager/all"

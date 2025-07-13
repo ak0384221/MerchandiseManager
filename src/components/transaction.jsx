@@ -16,36 +16,42 @@ export default function TransactionList() {
   console.log(selectedCompany);
   return (
     <>
-      {selectedCompany ? (
-        isUpdate ? (
-          <UpdateTransaction
-            selectedCompany={selectedCompany}
-            totalPrice={totalPrice}
-            totalDue={totalDue}
-          />
-        ) : (
-          <>
-            <TransactionDetails
+      <div className="w-3/4 mx-auto   py-5">
+        {selectedCompany ? (
+          isUpdate ? (
+            <UpdateTransaction
               selectedCompany={selectedCompany}
               totalPrice={totalPrice}
               totalDue={totalDue}
             />
-            <div className="flex justify-center items-center gap-5 mt-2 ">
-              {totalDue !== 0 && (
-                <button
-                  onClick={() => setUpdate(true)}
-                  className="w-25 h-8  bg-green-700 rounded-sm hover:scale-90 active:scale-85 transition-all"
-                >
-                  Update
+          ) : (
+            <>
+              <IoArrowBackCircle
+                className="text-4xl hover:scale-110 mx-3 mb-3 active:scale-90 transition-all"
+                onClick={() => navigate(-1)}
+              />
+              <TransactionDetails
+                selectedCompany={selectedCompany}
+                totalPrice={totalPrice}
+                totalDue={totalDue}
+              />
+              <div className="flex justify-center items-center gap-5 mt-5 my-5">
+                {totalDue !== 0 && (
+                  <button
+                    onClick={() => setUpdate(true)}
+                    className="w-25 h-8  bg-[#0077b6] rounded-sm hover:scale-95 active:scale-85 transition-all"
+                  >
+                    Update
+                  </button>
+                )}
+                <button className="w-25 h-8  bg-[#16828a]  rounded-sm hover:scale-95 active:scale-85 transition-all">
+                  Print
                 </button>
-              )}
-              <button className="w-25 h-8  bg-blue-700 rounded-sm hover:scale-90 active:scale-85 transition-all">
-                Print
-              </button>
-            </div>
-          </>
-        )
-      ) : null}
+              </div>
+            </>
+          )
+        ) : null}
+      </div>
     </>
   );
 }

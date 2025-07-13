@@ -1,8 +1,9 @@
 import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
-import { Form } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import { db, transactionsRef } from "../configuration/firebaseConfig";
+import { IoArrowBackCircle } from "react-icons/io5";
 export default function UpdateTransaction({
   selectedCompany,
   totalPrice,
@@ -11,6 +12,7 @@ export default function UpdateTransaction({
   const paymentAmountEl = useRef();
   const paymentMethodEl = useRef();
   const updatedByEl = useRef();
+  const navigate = useNavigate();
 
   async function updatedForm(evt) {
     evt.preventDefault();
@@ -44,13 +46,18 @@ export default function UpdateTransaction({
       });
   }
   console.log(selectedCompany);
+
   return (
     <>
       <Form
         onSubmit={updatedForm}
-        className=" w-full mx-auto h-full text-neutral-200  p-6"
+        className=" w-full mx-auto h-full text-neutral-200 "
       >
-        <div className="max-w-md mx-auto space-y-3 border border-neutral-500 p-5 bg-neutral-900">
+        <div className="w-full mx-auto space-y-3  border-neutral-500 p-5 bg-[#065A60]">
+          <IoArrowBackCircle
+            className="text-4xl  mb-3 active:scale-90 transition-all"
+            onClick={() => navigate(-1)}
+          />
           <h2 className="text-2xl font-bold mb-6 text-center  pb-2">
             Transaction Update
           </h2>
@@ -79,7 +86,7 @@ export default function UpdateTransaction({
 
           <div className="flex justify-between  ">
             <span className="font-medium">Total Due:</span>
-            <span className="bg-red-600  text-white  px-2 font-semibold">
+            <span className="bg-red-800  text-[#f3efef]  px-2 font-semibold">
               {totalDue}
             </span>
           </div>
@@ -123,7 +130,10 @@ export default function UpdateTransaction({
             </span>
           </div>
           <div className=" w-full flex justify-center">
-            <button className="bg-green-700 px-10 py-2  hover:bg-green-900 transition-all rounded-sm active:scale-85">
+            <button
+              onClick={() => navigate(-1)}
+              className="bg-[#16828a] px-10 py-2  hover:scale-105 transition-all rounded-sm active:scale-85"
+            >
               Update
             </button>
           </div>

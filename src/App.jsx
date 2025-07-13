@@ -7,7 +7,9 @@ function App() {
     <>
       <DataContextProvider>
         <Header />
-        <Outlet />
+        <div className="mt-[20vh]">
+          <Outlet />
+        </div>
       </DataContextProvider>
     </>
   );

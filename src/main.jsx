@@ -15,6 +15,15 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: "/",
+        element: (
+          <div className="text-4xl font-bold font-Inter capitalize text-center text-neutral-900">
+            Choose a category
+          </div>
+        ),
+      },
+      ,
+      {
         path: "/m-manager/:type",
         element: <ManagerLayout />,
       },

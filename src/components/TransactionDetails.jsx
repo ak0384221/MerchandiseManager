@@ -3,9 +3,8 @@ export default function TransactionDetails({
   totalPrice,
   totalDue,
 }) {
-  console.log(totalDue);
   return (
-    <div className="max-w-md mx-auto p-6   ">
+    <div className="w-full mx-auto p-6 bg-[#065A60] text-sm font-Inter  ">
       <h2 className="text-2xl font-bold mb-4  my-2">Transaction Details</h2>
       <div className="space-y-2">
         <div className="flex justify-between">
@@ -51,7 +50,7 @@ export default function TransactionDetails({
         <hr />
         <div className="flex justify-between">
           <span className="font-medium">Price in total:</span>
-          <span className="text-yellow-500">
+          <span className="text-yellow-300">
             {(
               selectedCompany?.unitPrice * selectedCompany?.quantity
             )?.toLocaleString()}
@@ -66,7 +65,7 @@ export default function TransactionDetails({
         <hr />
         <div className="flex justify-between">
           <span className="font-medium">Total due:</span>
-          <span className="text-red-600 font-bold bg-white px-2">
+          <span className="text-red-800 font-bold bg-white px-2">
             {totalDue.toLocaleString()}
           </span>
         </div>
