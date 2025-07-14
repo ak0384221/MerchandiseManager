@@ -22,7 +22,9 @@ export default function TransactionForm() {
     const finalData = {
       ...data,
       state:
-        data?.quantity * data?.unitPrice === data?.totalPaid ? "paid" : "due",
+        data?.quantity * data?.unitPrice === data?.totalPaid
+          ? "paid"
+          : "pending",
     };
     setData(finalData);
     setWarningOpen(true);

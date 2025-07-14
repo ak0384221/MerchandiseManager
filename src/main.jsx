@@ -7,6 +7,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { lazy, Suspense } from "react";
 // Lazy load components
+const AdminPannel = lazy(() => import("./components/AdminPannel/admin.jsx"));
+const History = lazy(() => import("./components/AdminPannel/history.jsx"));
 const ManagerLayout = lazy(() => import("./components/managerLayout.jsx"));
 const TransactionList = lazy(() => import("./components/transaction.jsx"));
 const TransactionForm = lazy(() =>
@@ -17,8 +19,9 @@ const UpdateTransaction = lazy(() =>
 );
 //
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import AdminPannel from "./components/AdminPannel/admin.jsx";
-import History from "./components/AdminPannel/history.jsx";
+
+import DataContextProvider from "./store/store.jsx";
+import Fallback from "./components/fallback/fallback.jsx";
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
@@ -37,7 +40,7 @@ const router = createBrowserRouter([
       {
         path: "/m-manager/:type",
         element: (
-          <Suspense fallback={<div>Loading Manager...</div>}>
+          <Suspense fallback={<Fallback />}>
             <ManagerLayout />
           </Suspense>
         ),
@@ -46,7 +49,7 @@ const router = createBrowserRouter([
       {
         path: "/m-manager/:type/transaction/:id",
         element: (
-          <Suspense fallback={<div>Loading Transaction...</div>}>
+          <Suspense fallback={<Fallback />}>
             <TransactionList />
           </Suspense>
         ),
@@ -55,7 +58,7 @@ const router = createBrowserRouter([
       {
         path: "/m-manager/add-new-item",
         element: (
-          <Suspense fallback={<div>Loading Form...</div>}>
+          <Suspense fallback={<Fallback />}>
             <TransactionForm />
           </Suspense>
         ),
@@ -63,7 +66,7 @@ const router = createBrowserRouter([
       {
         path: "/m-manager/:type/transaction/:id/edit",
         element: (
-          <Suspense fallback={<div>Loading Update Page...</div>}>
+          <Suspense fallback={<Fallback />}>
             <UpdateTransaction />
           </Suspense>
         ),
@@ -71,14 +74,32 @@ const router = createBrowserRouter([
       ,
     ],
   },
-  { path: "/m-manager/secret/alahomora", element: <AdminPannel /> },
-  { path: "/m-manager/secret/alahomora/transaction/:id", element: <History /> },
+  {
+    path: "/m-manager/secret/alahomora",
+    element: (
+      <Suspense fallback={<Fallback />}>
+        <AdminPannel />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/m-manager/secret/alahomora/transaction/:id",
+    element: (
+      <Suspense fallback={<Fallback />}>
+        ,
+        <History />
+      </Suspense>
+    ),
+  },
+  ,
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <DataContextProvider>
+        <RouterProvider router={router} />
+      </DataContextProvider>
     </QueryClientProvider>
   </StrictMode>
 );

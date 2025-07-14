@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { DataContext } from "../store/store";
 import { FaCirclePlus } from "react-icons/fa6";
-import { Timestamp } from "firebase/firestore";
+import Fallback from "./fallback/fallback";
 
 export default function ManagerLayout() {
   const { type } = useParams();
@@ -10,22 +10,34 @@ export default function ManagerLayout() {
 
   return (
     <>
-      <div className="box  relative  min-h-screen  border-neutral-800 px-5 py-2 overflow-hidden">
+      <div className="box  relative  min-h-screen  px-5 py-2 overflow-hidden">
         <div className=" flex justify-end items-center">
           <Link to="/m-manager/add-new-item">
             <FaCirclePlus className="text-3xl mx-2 my-2 hover:scale-110 transition-all" />
           </Link>
         </div>
-        {isPending && <div>loading</div>}
+
         {data && (
           <div className=" ">
+            <div className=" rounded-sm p-3 my-2 flex justify-between items-center gap-3 font-Ubuntu capitalize ">
+              <span className=" font-medium text-md w-40 ">Company</span>
+              <span className=" font-medium text-md w-24    ">type</span>
+              <span className=" font-medium text-md w-20 ">Product</span>
+              <span className=" font-medium text-md w-32 ">Unit/Quantity</span>
+              <span
+                className={` font-medium text-md w-20 text-center  px-2 py-1 rounded-sm uppercase  `}
+              >
+                Date
+              </span>
+            </div>
+
             {data?.map((items, idx) =>
               type === "all" || items?.type === type ? (
                 <Link key={idx} to={`transaction/${items?.transactionId}`}>
                   <div
                     key={idx}
                     className={`bg-[#0b393f] text-sm rounded-sm p-3 my-2 flex justify-between items-center gap-3 font-Ubuntu capitalize ${
-                      items?.state?.toLowerCase().trim() === "due" &&
+                      items?.state?.toLowerCase().trim() === "pending" &&
                       " border-1 border-[#940139]"
                     } `}
                   >
@@ -33,8 +45,9 @@ export default function ManagerLayout() {
                     <span className="w-24 truncate  text-sm ">
                       {items?.type}
                     </span>
-                    <span className="w-20 truncate">{items?.quantity}</span>
                     <span className="w-32 truncate">{items?.product}</span>
+                    <span className="w-20 truncate">{items?.quantity}</span>
+
                     <span
                       className={`w-20 text-center truncate px-2 py-1 rounded-sm uppercase text-sm `}
                     >
@@ -49,6 +62,7 @@ export default function ManagerLayout() {
 
         {error && <p>some error</p>}
       </div>
+      {isPending && <Fallback />}
     </>
   );
 }

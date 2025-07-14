@@ -5,12 +5,10 @@ import DataContextProvider from "./store/store";
 function App() {
   return (
     <>
-      <DataContextProvider>
-        <Header />
-        <div className="mt-[20vh]">
-          <Outlet />
-        </div>
-      </DataContextProvider>
+      <Header />
+      <div className="mt-[20vh]">
+        <Outlet />
+      </div>
     </>
   );
 }

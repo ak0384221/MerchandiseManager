@@ -7,33 +7,8 @@ import { transactionsRef } from "../../configuration/firebaseConfig";
 import { FaCirclePlus } from "react-icons/fa6";
 
 export default function AdminPannel() {
-  const { data, isPending, error } = useQuery({
-    queryKey: ["transactionData"],
-    queryFn: fetchTransactions,
-  });
+  const { data, isPending, error, formatDate } = useContext(DataContext);
 
-  async function fetchTransactions() {
-    try {
-      const snapshot = await getDocs(transactionsRef);
-      return snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-    } catch (err) {
-      console.error("Error fetching transactions:", err);
-      throw err;
-    }
-  }
-  function formatDate(timestamp) {
-    const date = timestamp.toDate(); // Convert Firestore Timestamp to JS Date
-    const day = date.getDate();
-    const month = date.getMonth() + 1; // JS months are 0-indexed
-    const year = date.getFullYear().toString().slice(-2); // Last 2 digits
-
-    return `${day}/${month}/${year}`;
-  }
-
-  console.log(data);
   return (
     <>
       <nav className=" w-full print:hidden py-2  ">

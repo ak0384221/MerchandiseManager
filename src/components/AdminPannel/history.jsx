@@ -6,7 +6,6 @@ export default function History() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { data, isPending } = useTransactionById(id);
-  console.log(data);
   let totalPrice = data?.unitPrice * data?.quantity;
   let totalDue = totalPrice - data?.totalPaid;
   return (
@@ -78,14 +77,14 @@ export default function History() {
             <div className="flex justify-between">
               <span className="font-medium">Total due:</span>
               <span className="text-red-800 font-bold bg-white px-2">
-                ৳ {totalDue.toLocaleString()}
+                ৳ {totalDue?.toLocaleString()}
               </span>
             </div>
           </div>
         </div>
 
         <h1 className="text-3xl font-bold text-center my-2">Update history</h1>
-        {data?.updateHistory.map((item) => (
+        {data?.updateHistory?.map((item) => (
           <div className="bg-[#043235] rounded-xl shadow-md border p-4 w-full md:w-3/5 lg:w-1/3 mx-auto mt-5 ">
             <h2 className="text-lg font-semibold mb-2">Payment Info</h2>
 
@@ -122,7 +121,7 @@ export default function History() {
             <div className="flex justify-between text-sm mt-1">
               <span className="font-medium">Due Left:</span>
               <span className="text-red-500">
-                {item?.newDue === 0 ? "Cleared" : `৳${newDue}`}
+                {item?.newDue === 0 ? "Cleared" : `৳${item?.newDue}`}
               </span>
             </div>
           </div>

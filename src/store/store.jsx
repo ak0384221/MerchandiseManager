@@ -30,6 +30,7 @@ export default function DataContextProvider({ children }) {
       throw err;
     }
   }
+
   function formatDate(timestamp) {
     const date = timestamp.toDate(); // Convert Firestore Timestamp to JS Date
     const day = date.getDate();
@@ -43,6 +44,7 @@ export default function DataContextProvider({ children }) {
     const newObj = {
       ...obj,
       date: serverTimestamp(),
+      updateHistory: [],
     };
     try {
       const docRef = await addDoc(transactionsRef, newObj);
@@ -80,7 +82,7 @@ export default function DataContextProvider({ children }) {
       ...data,
       totalPaid: finalPayment,
       state: finalPayment == totalPrice ? "paid" : "due",
-      updateHistory: [historyObj],
+      updateHistory: [...data.updateHistory, historyObj],
     };
     const docRef = doc(transactionsRef, data?.transactionId); // ✅ Step 2
     await updateDoc(docRef, obj) // ✅ Step 3

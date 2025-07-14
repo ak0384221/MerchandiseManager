@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Loader from "./loader";
 
 export default function TransactionDetails({ data }) {
   let totalPrice = data?.unitPrice * data?.quantity;
@@ -41,6 +40,12 @@ export default function TransactionDetails({ data }) {
               {data?.state}
             </span>
           </div>
+
+          <div className="flex justify-between">
+            <span className="font-medium">Payment Method:</span>
+            <span className="text-green-500">{data?.payBy}</span>
+          </div>
+
           <div className="flex justify-between">
             <span className="font-medium">Price/unit:</span>
             <span>{data?.unitPrice?.toLocaleString()}</span>

@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { IoArrowBackCircle } from "react-icons/io5";
 import TransactionDetails from "./TransactionDetails";
 import { useTransactionById } from "./hooks/findTransactionsById";
+import Fallback from "./fallback/fallback";
 //
 export default function TransactionList() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ export default function TransactionList() {
             <TransactionDetails data={data} />
           </>
         )}
-        {isPending && <p>Loading transaction</p>}
+        {isPending && <Fallback />}
       </div>
     </>
   );
