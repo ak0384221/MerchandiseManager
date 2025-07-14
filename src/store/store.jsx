@@ -3,40 +3,72 @@ import {
   addDoc,
   doc,
   getDocs,
+  onSnapshot,
+  orderBy,
+  query,
   serverTimestamp,
   setDoc,
   updateDoc,
+  where,
 } from "firebase/firestore";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { transactionsRef } from "../configuration/firebaseConfig";
 
 export const DataContext = createContext([]);
 
 export default function DataContextProvider({ children }) {
-  const { data, isPending, error } = useQuery({
-    queryKey: ["transactionData"],
-    queryFn: fetchTransactions,
+  const [dataObj, setDataObj] = useState({
+    data: [],
+    isLoading: false,
+    isError: false,
+  });
+  const [filter, setFilter] = useState({
+    state: "all",
+    type: "all",
+    orderBy: "desc",
   });
 
-  async function fetchTransactions() {
-    try {
-      const snapshot = await getDocs(transactionsRef);
-      return snapshot.docs.map((doc) => ({
+  useEffect(() => {
+    let q = transactionsRef;
+
+    if (filter.type && filter.type !== "all") {
+      q = query(q, where("type", "==", filter.type));
+    }
+    // Apply "state" filter if it's not "all"
+
+    if (filter.state && filter.state !== "all") {
+      q = query(q, where("state", "==", filter.state));
+    }
+
+    if (filter.orderBy && filter.orderBy == "desc") {
+      q = query(q, orderBy("date", "desc"));
+    }
+    if (filter.orderBy && filter.orderBy == "asc") {
+      q = query(q, orderBy("date", "asc"));
+    }
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const docs = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
-    } catch (err) {
-      console.error("Error fetching transactions:", err);
-      throw err;
-    }
-  }
+
+      setDataObj((prev) => {
+        return {
+          ...prev,
+          data: docs,
+        };
+      });
+    });
+
+    return () => unsubscribe();
+  }, [filter]);
 
   function formatDate(timestamp) {
     const date = timestamp.toDate(); // Convert Firestore Timestamp to JS Date
     const day = date.getDate();
     const month = date.getMonth() + 1; // JS months are 0-indexed
     const year = date.getFullYear().toString().slice(-2); // Last 2 digits
-
     return `${day}/${month}/${year}`;
   }
 
@@ -102,13 +134,13 @@ export default function DataContextProvider({ children }) {
   return (
     <DataContext.Provider
       value={{
-        data,
-        isPending,
-        error,
+        dataObj,
+        filter,
         addNewItem,
         updateTransaction,
         formatDate,
         totalDue,
+        setFilter,
       }}
     >
       {children}
