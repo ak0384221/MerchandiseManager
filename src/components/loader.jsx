@@ -7,8 +7,8 @@ export default function Loader({ className = "" }) {
         viewBox="0 0 200 200"
       >
         <linearGradient id="a7">
-          <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"></stop>
-          <stop offset="1" stop-color="#FFFFFF"></stop>
+          <stop offset="0" stopColor="#FFFFFF" stopOpacity="0"></stop>
+          <stop offset="1" stopColor="#FFFFFF"></stop>
         </linearGradient>
         <circle
           fill="none"
@@ -19,7 +19,7 @@ export default function Loader({ className = "" }) {
           cx="100"
           cy="100"
           r="70"
-          transform-origin="center"
+          transformOrigin="center"
         >
           <animateTransform
             type="rotate"

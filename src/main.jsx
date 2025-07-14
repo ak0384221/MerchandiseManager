@@ -10,7 +10,6 @@ import { lazy, Suspense } from "react";
 const AdminPannel = lazy(() => import("./components/AdminPannel/admin.jsx"));
 const History = lazy(() => import("./components/AdminPannel/history.jsx"));
 const ManagerLayout = lazy(() => import("./components/managerLayout.jsx"));
-const TransactionList = lazy(() => import("./components/transaction.jsx"));
 const TransactionForm = lazy(() =>
   import("./components/micro/transactionForm.jsx")
 );
@@ -22,6 +21,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import DataContextProvider from "./store/store.jsx";
 import Fallback from "./components/fallback/fallback.jsx";
+import TransactionDetails from "./components/TransactionDetails.jsx";
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
@@ -30,27 +30,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: (
-          <div className="text-4xl  h-[50vh] flex justify-center items-center text-[#035557] font-bold font-Inter capitalize text-center ">
-            Choose a category
-          </div>
-        ),
+        element: <ManagerLayout />,
       },
+
       ,
       {
-        path: "/m-manager/:type",
+        path: "/m-manager/transaction/:id",
         element: (
           <Suspense fallback={<Fallback />}>
-            <ManagerLayout />
-          </Suspense>
-        ),
-      },
-      ,
-      {
-        path: "/m-manager/:type/transaction/:id",
-        element: (
-          <Suspense fallback={<Fallback />}>
-            <TransactionList />
+            <TransactionDetails />
           </Suspense>
         ),
       },
@@ -64,7 +52,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/m-manager/:type/transaction/:id/edit",
+        path: "/m-manager/transaction/:id/edit",
         element: (
           <Suspense fallback={<Fallback />}>
             <UpdateTransaction />
@@ -86,7 +74,6 @@ const router = createBrowserRouter([
     path: "/m-manager/secret/alahomora/transaction/:id",
     element: (
       <Suspense fallback={<Fallback />}>
-        ,
         <History />
       </Suspense>
     ),

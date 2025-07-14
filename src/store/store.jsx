@@ -41,6 +41,7 @@ export default function DataContextProvider({ children }) {
   }
 
   async function addNewItem(obj) {
+    console.log(obj);
     const newObj = {
       ...obj,
       date: serverTimestamp(),
@@ -56,6 +57,10 @@ export default function DataContextProvider({ children }) {
     } catch (err) {
       console.log(err);
     }
+  }
+  function totalDue(quantity, unitPrice, paid) {
+    const totalPrice = unitPrice * quantity;
+    return totalPrice - paid;
   }
 
   async function updateTransaction(
@@ -81,7 +86,7 @@ export default function DataContextProvider({ children }) {
     const obj = {
       ...data,
       totalPaid: finalPayment,
-      state: finalPayment == totalPrice ? "paid" : "due",
+      state: finalPayment == totalPrice ? "paid" : "pending",
       updateHistory: [...data.updateHistory, historyObj],
     };
     const docRef = doc(transactionsRef, data?.transactionId); // ✅ Step 2
@@ -103,6 +108,7 @@ export default function DataContextProvider({ children }) {
         addNewItem,
         updateTransaction,
         formatDate,
+        totalDue,
       }}
     >
       {children}

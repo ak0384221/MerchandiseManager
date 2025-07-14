@@ -13,8 +13,8 @@ export default function ConfirmTransactionModal({
   const totalPrice = data?.unitPrice * data?.quantity;
 
   return ReactDOM.createPortal(
-    <div className="fixed inset-0 backdrop-blur-2xl flex items-center justify-center z-20 w-full mx-auto">
-      <div className=" bg-[#06484e] rounded-lg w-4/5 md:w-3/5 lg:w-1/2  p-6">
+    <div className="fixed inset-0 backdrop-blur-2xl flex items-center justify-center z-20 w-full  mx-auto  ">
+      <div className=" bg-[#06484e] rounded-lg  md:w-3/5 lg:w-1/2 p-5 ">
         <h2 className="text-xl font-bold mb-4">Confirm Transaction Details</h2>
 
         <div className="space-y-2 text-sm">
@@ -71,7 +71,7 @@ export default function ConfirmTransactionModal({
           <button
             onClick={() => {
               onConfirm(data);
-              navigate("/m-manager/all");
+              navigate("/");
             }}
             className="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-500  transition-colors"
           >

@@ -10,7 +10,7 @@ export default function History() {
   let totalDue = totalPrice - data?.totalPaid;
   return (
     <>
-      <div className=" border p-5">
+      <div className=" p-5">
         <IoArrowBackCircle
           className="text-4xl print:hidden hover:scale-110 mx-3 mb-3 active:scale-90 transition-all"
           onClick={() => navigate(-1)}
@@ -85,7 +85,7 @@ export default function History() {
 
         <h1 className="text-3xl font-bold text-center my-2">Update history</h1>
         {data?.updateHistory?.map((item) => (
-          <div className="bg-[#043235] rounded-xl shadow-md border p-4 w-full md:w-3/5 lg:w-1/3 mx-auto mt-5 ">
+          <div className="bg-[#043235] rounded-xl shadow-md  p-4 w-full md:w-3/5 lg:w-1/3 mx-auto mt-5 ">
             <h2 className="text-lg font-semibold mb-2">Payment Info</h2>
 
             <div className="flex justify-between text-sm">

@@ -1,11 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { DataContext } from "../store/store";
+import { useContext } from "react";
+import { useTransactionById } from "./hooks/findTransactionsById";
+import { IoArrowBackCircle } from "react-icons/io5";
 
-export default function TransactionDetails({ data }) {
-  let totalPrice = data?.unitPrice * data?.quantity;
-  let totalDue = totalPrice - data?.totalPaid;
+export default function TransactionDetails() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { data, isPending } = useTransactionById(id);
+  const { totalDue } = useContext(DataContext);
   return (
     <>
-      <div className="w-full  mx-auto p-6 bg-[#043235] text-sm font-Inter  ">
+      <div className="w-full md:w-3/5 lg:w-1/2 mx-auto p-6 bg-[#043235] text-sm font-Inter  ">
+        <IoArrowBackCircle
+          className="text-4xl mb-5 active:scale-85 transition-all"
+          onClick={() => navigate(-1)}
+        />
         <h2 className="text-2xl font-bold mb-4  my-2">Transaction Details</h2>
         <div className="space-y-2">
           <div className="flex justify-between">
@@ -71,30 +81,35 @@ export default function TransactionDetails({ data }) {
           <div className="flex justify-between">
             <span className="font-medium">Total due:</span>
             <span className="text-red-800 font-bold bg-white px-2">
-              {totalDue.toLocaleString()}
+              {totalDue(
+                data?.quantity,
+                data?.unitPrice,
+                data?.totalPaid
+              )?.toLocaleString()}
             </span>
           </div>
         </div>
-      </div>
-      <div className="flex justify-center items-center gap-5 mt-5 my-5">
-        {totalDue !== 0 && (
-          <Link
-            to={{
-              pathname: `/m-manager/${data?.type}/transaction/${data?.transactionId}/edit`,
-              search: "?update=true",
-            }}
+        <div className="flex justify-center items-center gap-5 mt-5  px-5">
+          {totalDue !== 0 && (
+            <Link
+              className="w-1/2"
+              to={{
+                pathname: `/m-manager/transaction/${data?.transactionId}/edit`,
+                search: "?update=true",
+              }}
+            >
+              <button className="h-10 w-full  bg-[#0077b6] rounded-sm hover:bg-[#0076b681] active:scale-85 transition-all">
+                Update
+              </button>
+            </Link>
+          )}
+          <button
+            onClick={() => window.print()}
+            className="w-1/2  flex justify-center items-center h-10  bg-[#094347]  rounded-sm hover:bg-[#395d66fa] active:scale-85 transition-all"
           >
-            <button className="w-25 h-8  bg-[#0077b6] rounded-sm hover:scale-95 active:scale-85 transition-all">
-              Update
-            </button>
-          </Link>
-        )}
-        <button
-          onClick={() => window.print()}
-          className="w-25 flex justify-center items-center h-8  bg-[#094347]  rounded-sm hover:bg-[#395d66fa] active:scale-85 transition-all"
-        >
-          Print
-        </button>
+            Print
+          </button>
+        </div>
       </div>
     </>
   );

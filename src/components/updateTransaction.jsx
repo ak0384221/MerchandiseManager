@@ -42,9 +42,9 @@ export default function UpdateTransaction() {
       {update == "true" && (
         <Form
           onSubmit={updatedForm}
-          className="w-4/5 md:w-3/5  lg:w-1/2 py-10 mx-auto h-full  "
+          className="px-1 md:w-3/5  lg:w-1/2  mx-auto h-full  "
         >
-          <div className="w-full mx-auto space-y-3  border-neutral-500 p-5 bg-[#043235]">
+          <div className="w-full mx-auto space-y-3 font-Inter  text-sm border-neutral-500 p-5 bg-[#043235]">
             <IoArrowBackCircle
               className="text-4xl  mb-3 active:scale-90 transition-all"
               onClick={() => navigate(-1)}
@@ -123,7 +123,7 @@ export default function UpdateTransaction() {
             <div className=" w-full flex justify-center">
               <button
                 onClick={() => navigate(-1)}
-                className="bg-[#095358] px-10 py-2  hover:bg-[#3a696d] transition-all rounded-sm active:scale-85"
+                className="bg-[#095358] w-1/2 px-10 py-2  hover:bg-[#3a696d] transition-all rounded-sm active:scale-85"
               >
                 Update
               </button>
