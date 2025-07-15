@@ -7,7 +7,12 @@ import ConfirmTransactionModal from "../portals/confirmTransaction";
 
 export default function TransactionForm() {
   const { addNewItem } = useContext(DataContext);
-  const { register, handleSubmit, watch } = useForm();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
   const [isWarningOpen, setWarningOpen] = useState(false);
   const [data, setData] = useState();
   const navigate = useNavigate();
@@ -53,10 +58,16 @@ export default function TransactionForm() {
             <div className="md:col-span-2">
               <label className="block mb-1 font-medium">Company Name</label>
               <input
-                {...register("companyName")}
-                className="w-full px-3 py-2 rounded-md bg-[#094247] focus:outline-none "
-                placeholder="e.g. Sonali Bank"
+                {...register("companyName", {
+                  required: "Company name is required",
+                })}
+                className="w-full px-3 py-2 rounded-md bg-[#094247] focus:outline-none"
               />
+              {errors.companyName && (
+                <p className="text-red-400 text-xs mt-1">
+                  {errors.companyName.message}
+                </p>
+              )}
             </div>
 
             {/* Transaction Type */}
@@ -66,7 +77,9 @@ export default function TransactionForm() {
                 {["sold", "purchased"].map((type) => (
                   <label key={type} className="flex items-center gap-1">
                     <input
-                      {...register("type")}
+                      {...register("type", {
+                        required: "Select a transaction type",
+                      })}
                       type="radio"
                       value={type}
                       className="accent-cyan-500"
@@ -74,6 +87,11 @@ export default function TransactionForm() {
                     {type.charAt(0).toUpperCase() + type.slice(1)}
                   </label>
                 ))}
+                {errors.type && (
+                  <p className="text-red-400 text-xs mt-1">
+                    {errors.type.message}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -81,43 +99,82 @@ export default function TransactionForm() {
             <div>
               <label className="block mb-1 font-medium">Product Name</label>
               <input
-                {...register("product")}
-                className="w-full px-3 py-2 rounded-md bg-[#094247] focus:outline-none "
-                placeholder="e.g. Leather Shoes"
+                {...register("product", {
+                  required: "Product name is required",
+                })}
+                className="w-full px-3 py-2 rounded-md bg-[#094247] focus:outline-none"
               />
+              {errors.product && (
+                <p className="text-red-400 text-xs mt-1">
+                  {errors.product.message}
+                </p>
+              )}
             </div>
 
             {/* Quantity */}
             <div>
               <label className="block mb-1 font-medium">Quantity</label>
               <input
-                {...register("quantity", { valueAsNumber: true })}
+                {...register("quantity", {
+                  required: "Quantity is required",
+                  min: { value: 1, message: "Minimum quantity is 1" },
+                  valueAsNumber: true,
+                })}
                 type="number"
                 onWheel={(e) => e.target.blur()}
-                className="w-full px-3 py-2 rounded-md bg-[#094247] focus:outline-none "
+                className="w-full px-3 py-2 rounded-md bg-[#094247] focus:outline-none"
               />
+              {errors.quantity && (
+                <p className="text-red-400 text-xs mt-1">
+                  {errors.quantity.message}
+                </p>
+              )}
             </div>
 
             {/* Unit Price */}
             <div>
               <label className="block mb-1 font-medium">Price Per Unit</label>
               <input
-                {...register("unitPrice", { valueAsNumber: true })}
+                {...register("unitPrice", {
+                  required: "Price per unit is required",
+                  min: { value: 1, message: "Price must be at least 1" },
+                  valueAsNumber: true,
+                })}
                 type="number"
                 onWheel={(e) => e.target.blur()}
-                className="w-full px-3 py-2 rounded-md bg-[#094247] focus:outline-none "
+                className="w-full px-3 py-2 rounded-md bg-[#094247] focus:outline-none"
               />
+              {errors.unitPrice && (
+                <p className="text-red-400 text-xs mt-1">
+                  {errors.unitPrice.message}
+                </p>
+              )}
             </div>
 
             {/* Paid */}
             <div>
               <label className="block mb-1 font-medium">Paid Amount</label>
               <input
-                {...register("totalPaid", { valueAsNumber: true })}
+                {...register("totalPaid", {
+                  required: "Paid amount is required",
+                  min: { value: 0, message: "Paid amount cannot be negative" },
+                  max: {
+                    value: total,
+                    message:
+                      "Paid amount cannot exceed total amount of purchase",
+                  },
+
+                  valueAsNumber: true,
+                })}
                 type="number"
                 onWheel={(e) => e.target.blur()}
-                className="w-full px-3 py-2 rounded-md bg-[#094247] focus:outline-none "
+                className="w-full px-3 py-2 rounded-md bg-[#094247] focus:outline-none"
               />
+              {errors.totalPaid && (
+                <p className="text-red-400 text-xs mt-1">
+                  {errors.totalPaid.message}
+                </p>
+              )}
             </div>
 
             {/* Total & Due */}
@@ -143,7 +200,9 @@ export default function TransactionForm() {
                 {["cash", "bank", "bkash"].map((method) => (
                   <label key={method} className="flex items-center gap-1">
                     <input
-                      {...register("payBy")}
+                      {...register("payBy", {
+                        required: "Select a payment method",
+                      })}
                       type="radio"
                       value={method}
                       className="accent-cyan-500"
@@ -151,6 +210,11 @@ export default function TransactionForm() {
                     {method.charAt(0).toUpperCase() + method.slice(1)}
                   </label>
                 ))}
+                {errors.payBy && (
+                  <p className="text-red-400 text-xs mt-1">
+                    {errors.payBy.message}
+                  </p>
+                )}
               </div>
             </div>
 

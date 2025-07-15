@@ -90,7 +90,7 @@ export default function TransactionDetails() {
           </div>
         </div>
         <div className="flex justify-center items-center gap-5 mt-5  px-5">
-          {totalDue !== 0 && (
+          {totalDue(data?.quantity, data?.unitPrice, data?.totalPaid) > 0 && (
             <Link
               className="w-1/2"
               to={{
@@ -98,7 +98,7 @@ export default function TransactionDetails() {
                 search: "?update=true",
               }}
             >
-              <button className="h-10 w-full  bg-[#0077b6] rounded-sm hover:bg-[#0076b681] active:scale-85 transition-all">
+              <button className="h-10 w-full  bg-[#12415a] rounded-sm hover:bg-[#0076b681] active:scale-85 transition-all">
                 Update
               </button>
             </Link>

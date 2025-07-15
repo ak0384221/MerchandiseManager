@@ -30,7 +30,7 @@ export default function ManagerLayout() {
                   };
                 })
               }
-              className="border px-2 py-1 rounded text-sm "
+              className="border   px-2 py-1 rounded text-sm "
             >
               <option className="bg-[#0d3f41]" value="all">
                 all
@@ -71,28 +71,36 @@ export default function ManagerLayout() {
                 setFilter((prevObj) => {
                   return {
                     ...prevObj,
-                    OrderBy: "desc",
+                    orderBy: "desc",
                   };
                 })
               }
-              className="  hover:bg-[#0d3f41] p-1 transition-colors "
+              className={`active:scale-85  hover:bg-[#0d3f41] p-1 transition-colors `}
               title="Latest first"
             >
-              <FaLongArrowAltUp className="text-xl" />
+              <FaLongArrowAltUp
+                className={`text-xl ${
+                  filter.orderBy == "desc" && "text-blue-500"
+                }`}
+              />
             </span>
             <span
               onClick={(e) =>
                 setFilter((prevObj) => {
                   return {
                     ...prevObj,
-                    OrderBy: "asc",
+                    orderBy: "asc",
                   };
                 })
               }
-              className="  hover:bg-[#0d3f41] p-1 transition-colors"
+              className=" active:scale-85 hover:bg-[#0d3f41] p-1 transition-colors"
               title="oldest first"
             >
-              <FaLongArrowAltDown className="text-xl" />
+              <FaLongArrowAltDown
+                className={`text-xl ${
+                  filter.orderBy == "asc" && "text-blue-500"
+                }`}
+              />
             </span>
           </div>
 

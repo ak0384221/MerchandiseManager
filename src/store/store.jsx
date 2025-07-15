@@ -65,11 +65,17 @@ export default function DataContextProvider({ children }) {
   }, [filter]);
 
   function formatDate(timestamp) {
-    const date = timestamp.toDate(); // Convert Firestore Timestamp to JS Date
-    const day = date.getDate();
-    const month = date.getMonth() + 1; // JS months are 0-indexed
-    const year = date.getFullYear().toString().slice(-2); // Last 2 digits
+    const date = timestamp?.toDate(); // Convert Firestore Timestamp to JS Date
+    const day = date?.getDate();
+    const month = date?.getMonth() + 1; // JS months are 0-indexed
+    const year = date?.getFullYear()?.toString()?.slice(-2); // Last 2 digits
     return `${day}/${month}/${year}`;
+  }
+  function formatToK(num) {
+    if (num >= 1000) {
+      return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+    }
+    return num.toString();
   }
 
   async function addNewItem(obj) {
@@ -141,6 +147,7 @@ export default function DataContextProvider({ children }) {
         formatDate,
         totalDue,
         setFilter,
+        formatToK,
       }}
     >
       {children}
