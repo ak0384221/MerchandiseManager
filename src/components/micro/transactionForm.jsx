@@ -216,7 +216,7 @@ export default function TransactionForm() {
 
             {/* Submit */}
             <div className="md:col-span-2">
-              <button className="w-full py-2 rounded-sm bg-cyan-600 hover:bg-cyan-700 text-white font-medium active:scale-95 transition-transform">
+              <button className="w-full py-2 rounded-sm bg-[#0e4547] hover:bg-[#2c4e4e] text-white font-medium active:scale-95 transition-colors cursor-pointer">
                 Submit Transaction
               </button>
             </div>

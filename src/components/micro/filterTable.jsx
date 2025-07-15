@@ -9,28 +9,7 @@ export default function FilterTable({ filter, setFilter, admin = false }) {
         {/* Left: Filter + Sort UI */}
         <div className="flex items-center gap-2">
           {/* Example: Filter Dropdown */}
-          <select
-            value={filter.state}
-            onChange={(e) =>
-              setFilter((prevObj) => {
-                return {
-                  ...prevObj,
-                  state: e.target.value.trim(),
-                };
-              })
-            }
-            className="border   px-2 py-1 rounded text-sm "
-          >
-            <option className="bg-[#0d3f41]" value="all">
-              all
-            </option>
-            <option className="bg-[#0d3f41]" value="pending">
-              Pending
-            </option>
-            <option className="bg-[#0d3f41]" value="paid">
-              Paid
-            </option>
-          </select>
+
           <select
             value={filter.type}
             onChange={(e) =>
@@ -51,6 +30,28 @@ export default function FilterTable({ filter, setFilter, admin = false }) {
             </option>
             <option className="bg-[#0d3f41]" value="all">
               All
+            </option>
+          </select>
+          <select
+            value={filter.state}
+            onChange={(e) =>
+              setFilter((prevObj) => {
+                return {
+                  ...prevObj,
+                  state: e.target.value.trim(),
+                };
+              })
+            }
+            className="border   px-2 py-1 rounded text-sm "
+          >
+            <option className="bg-[#0d3f41]" value="all">
+              All
+            </option>
+            <option className="bg-[#0d3f41]" value="pending">
+              Pending
+            </option>
+            <option className="bg-[#0d3f41]" value="paid">
+              Paid
             </option>
           </select>
 
