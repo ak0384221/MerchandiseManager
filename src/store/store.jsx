@@ -13,6 +13,7 @@ import {
 } from "firebase/firestore";
 import { createContext, useEffect, useState } from "react";
 import { transactionsRef } from "../configuration/firebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 export const DataContext = createContext([]);
 
@@ -96,6 +97,7 @@ export default function DataContextProvider({ children }) {
       console.log(err);
     }
   }
+
   function totalDue(quantity, unitPrice, paid) {
     const totalPrice = unitPrice * quantity;
     return totalPrice - paid;
@@ -109,7 +111,6 @@ export default function DataContextProvider({ children }) {
     totalPrice,
     totalDue
   ) {
-    console.log(data);
     const finalPayment = Number(data?.totalPaid) + paymentAmount;
 
     const historyObj = {

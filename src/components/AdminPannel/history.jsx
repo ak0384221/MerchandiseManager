@@ -14,7 +14,7 @@ export default function History() {
       <div className=" my-10 px-4 md:w-3/5 lg:w-1/2  mx-auto">
         <PrevNavigation />
 
-        <div className=" mx-auto  text-sm font-Inter  ">
+        <div className=" mx-auto  text-sm font-Inter  border border-[#0c4244] p-4">
           <h2 className="text-2xl font-bold mb-4  my-2">Transaction Details</h2>
           <div className="space-y-2">
             <div className="flex justify-between">
@@ -86,9 +86,11 @@ export default function History() {
             Update history
           </h1>
         )}
-        {data?.updateHistory?.map((item, index) => (
-          <UpdateHistory item={item} index={index} />
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 my-5 gap-5">
+          {data?.updateHistory?.map((item, index) => (
+            <UpdateHistory item={item} index={index} />
+          ))}
+        </div>
       </div>
     </>
   );

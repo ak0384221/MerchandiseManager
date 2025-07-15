@@ -2,10 +2,8 @@ export default function UpdateHistory({ item, index }) {
   return (
     <div
       key={index}
-      className="bg-[#043235] rounded-xl shadow-md  p-4  mx-auto mt-5 md:w-3/5 "
+      className="border border-[#043235] rounded-sm   p-2 gap-2 w-full  "
     >
-      <h2 className="text-lg font-semibold mb-2">Payment Info</h2>
-
       <div className="flex justify-between text-sm">
         <span className="font-medium">In Charge:</span>
         <span className="">{item?.InCharge}</span>

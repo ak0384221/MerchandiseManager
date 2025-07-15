@@ -9,7 +9,7 @@ export default function TableElement({ idx, items, admin = false }) {
       key={idx}
       className="relative  bg-[#0b393f] text-sm text-center rounded-sm p-3 my-4 font-Ubuntu capitalize"
     >
-      {items?.updateHistory?.length > 0 && (
+      {admin && items?.updateHistory?.length > 0 && (
         <span
           title="Updates"
           className=" absolute -top-3 left-0 md:top-1/2 md:transform  md:-translate-y-1/2 bg-blue-500 rounded-full size-5 text-xs flex justify-center items-center mr-1"

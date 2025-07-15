@@ -1,5 +1,10 @@
 import { useContext } from "react";
-import { useSearchParams, useParams, Form } from "react-router-dom";
+import {
+  useSearchParams,
+  useParams,
+  Form,
+  useNavigate,
+} from "react-router-dom";
 import { IoArrowBackCircle } from "react-icons/io5";
 import { useTransactionById } from "./hooks/findTransactionsById";
 import { DataContext } from "../store/store";
@@ -7,6 +12,7 @@ import { useForm } from "react-hook-form";
 import PrevNavigation from "./micro/PrevNavigation";
 
 export default function UpdateTransaction() {
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const update = searchParams.get("update");
   const { id } = useParams();
@@ -32,6 +38,7 @@ export default function UpdateTransaction() {
       totalPrice,
       totalDueV
     );
+    navigate("/");
   };
 
   return (
@@ -87,7 +94,7 @@ export default function UpdateTransaction() {
                     required: "Amount is required",
                     min: { value: 1, message: "Minimum is 1" },
                     max: {
-                      value: totalDue,
+                      value: totalDueV,
                       message: `Cannot exceed ${totalDueV?.toLocaleString()}`,
                     },
                     valueAsNumber: true,

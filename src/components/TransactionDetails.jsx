@@ -85,7 +85,7 @@ export default function TransactionDetails() {
             </span>
           </div>
         </div>
-        <div className="flex justify-center items-center gap-5 mt-5  px-5">
+        <div className="flex justify-center items-center gap-5 mt-5 ">
           {totalDue(data?.quantity, data?.unitPrice, data?.totalPaid) > 0 && (
             <Link
               className="w-1/2"
