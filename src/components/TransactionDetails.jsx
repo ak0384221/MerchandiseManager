@@ -1,22 +1,18 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { DataContext } from "../store/store";
 import { useContext } from "react";
 import { useTransactionById } from "./hooks/findTransactionsById";
-import { IoArrowBackCircle } from "react-icons/io5";
+import PrevNavigation from "./micro/PrevNavigation";
 
 export default function TransactionDetails() {
-  const navigate = useNavigate();
   const { id } = useParams();
   const { data, isPending } = useTransactionById(id);
   const { totalDue } = useContext(DataContext);
   return (
     <>
-      <div className="w-full md:w-3/5 lg:w-1/2 mx-auto p-6 bg-[#043235] text-sm font-Inter  ">
-        <IoArrowBackCircle
-          className="text-4xl mb-5 active:scale-85 transition-all"
-          onClick={() => navigate(-1)}
-        />
-        <h2 className="text-2xl font-bold mb-4  my-2">Transaction Details</h2>
+      <div className="w-full md:w-3/5 lg:w-1/2 mx-auto p-6  text-sm font-Inter  my-5 md:border border-[#0c4244] ">
+        <PrevNavigation />
+        <h2 className="text-2xl font-bold mb-4  ">Transaction Details</h2>
         <div className="space-y-2">
           <div className="flex justify-between">
             <span className="font-medium">Company Name:</span>

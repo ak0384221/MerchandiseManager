@@ -1,17 +1,12 @@
 import { useContext } from "react";
-import {
-  useSearchParams,
-  useParams,
-  Form,
-  useNavigate,
-} from "react-router-dom";
+import { useSearchParams, useParams, Form } from "react-router-dom";
 import { IoArrowBackCircle } from "react-icons/io5";
 import { useTransactionById } from "./hooks/findTransactionsById";
 import { DataContext } from "../store/store";
 import { useForm } from "react-hook-form";
+import PrevNavigation from "./micro/PrevNavigation";
 
 export default function UpdateTransaction() {
-  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const update = searchParams.get("update");
   const { id } = useParams();
@@ -37,22 +32,17 @@ export default function UpdateTransaction() {
       totalPrice,
       totalDueV
     );
-    navigate(-1);
   };
-  console.log(data);
 
   return (
     <>
       {update === "true" && (
         <Form
           onSubmit={handleSubmit(onSubmit)}
-          className="px-1 md:w-3/5 lg:w-1/2 mx-auto h-full"
+          className="px-1 md:w-3/5 lg:w-1/2 mx-auto h-full md:border border-[#0c4244] my-5"
         >
-          <div className="w-full mx-auto space-y-3 font-Inter text-sm border-neutral-500 p-5 bg-[#043235]">
-            <IoArrowBackCircle
-              className="text-4xl mb-3 active:scale-90 transition-all cursor-pointer"
-              onClick={() => navigate(-1)}
-            />
+          <div className="w-full mx-auto space-y-3 font-Inter text-sm px-5 py-2">
+            <PrevNavigation />
             <h2 className="text-2xl font-bold mb-6 text-center pb-2">
               Transaction Update
             </h2>

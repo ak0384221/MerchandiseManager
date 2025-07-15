@@ -13,7 +13,7 @@ export default function ConfirmTransactionModal({
   const totalPrice = data?.unitPrice * data?.quantity;
 
   return ReactDOM.createPortal(
-    <div className="fixed inset-0 backdrop-blur-2xl flex items-center justify-center z-20 w-full  mx-auto  ">
+    <div className="fixed inset-0 backdrop-blur-2xl flex items-center justify-center z-20 w-full  mx-auto px-2  ">
       <div className=" bg-[#06484e] rounded-lg  md:w-3/5 lg:w-1/2 p-5 ">
         <h2 className="text-xl font-bold mb-4">Confirm Transaction Details</h2>
 

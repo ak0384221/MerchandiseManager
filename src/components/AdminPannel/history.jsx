@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useTransactionById } from "../hooks/findTransactionsById";
-import { IoArrowBackCircle } from "react-icons/io5";
+import PrevNavigation from "../micro/PrevNavigation";
+import UpdateHistory from "./updateHistory";
 
 export default function History() {
   const navigate = useNavigate();
@@ -10,13 +11,10 @@ export default function History() {
   let totalDue = totalPrice - data?.totalPaid;
   return (
     <>
-      <div className=" p-5">
-        <IoArrowBackCircle
-          className="text-4xl print:hidden hover:scale-110 mx-3 mb-3 active:scale-90 transition-all"
-          onClick={() => navigate(-1)}
-        />
+      <div className=" my-10 px-4 md:w-3/5 lg:w-1/2  mx-auto">
+        <PrevNavigation />
 
-        <div className="w-full md:w-3/5 lg:w-1/2  mx-auto p-6 bg-[#043235] text-sm font-Inter  ">
+        <div className=" mx-auto  text-sm font-Inter  ">
           <h2 className="text-2xl font-bold mb-4  my-2">Transaction Details</h2>
           <div className="space-y-2">
             <div className="flex justify-between">
@@ -83,48 +81,13 @@ export default function History() {
           </div>
         </div>
 
-        <h1 className="text-3xl font-bold text-center my-2">Update history</h1>
-        {data?.updateHistory?.map((item) => (
-          <div className="bg-[#043235] rounded-xl shadow-md  p-4 w-full md:w-3/5 lg:w-1/3 mx-auto mt-5 ">
-            <h2 className="text-lg font-semibold mb-2">Payment Info</h2>
-
-            <div className="flex justify-between text-sm">
-              <span className="font-medium">In Charge:</span>
-              <span className="">{item?.InCharge}</span>
-            </div>
-
-            <div className="flex justify-between text-sm mt-1">
-              <span className="font-medium">Date:</span>
-              <span className="">
-                {new Date(Number(item?.date)).toLocaleString()}
-              </span>
-            </div>
-            <div className="flex justify-between text-sm mt-1">
-              <span className="font-medium">Prev Due:</span>
-              <span className="text-green-500 font-medium">
-                ৳{item?.prevDue?.toLocaleString()}
-              </span>
-            </div>
-
-            <div className="flex justify-between text-sm mt-1">
-              <span className="font-medium">Payment:</span>
-              <span className="text-green-600 font-semibold">
-                ৳ {item?.paymentAmount.toLocaleString()}
-              </span>
-            </div>
-
-            <div className="flex justify-between text-sm mt-1">
-              <span className="font-medium">Method:</span>
-              <span className=" capitalize">{item?.paymentMethod}</span>
-            </div>
-
-            <div className="flex justify-between text-sm mt-1">
-              <span className="font-medium">Due Left:</span>
-              <span className="text-red-500">
-                {item?.newDue === 0 ? "Cleared" : `৳${item?.newDue}`}
-              </span>
-            </div>
-          </div>
+        {data?.updateHistory.length > 0 && (
+          <h1 className="text-xl font-bold text-center mt-[5vh] font-Inter">
+            Update history
+          </h1>
+        )}
+        {data?.updateHistory?.map((item, index) => (
+          <UpdateHistory item={item} index={index} />
         ))}
       </div>
     </>

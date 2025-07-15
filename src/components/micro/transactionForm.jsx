@@ -4,6 +4,7 @@ import { DataContext } from "../../store/store";
 import { useForm } from "react-hook-form";
 import { IoIosCloseCircle } from "react-icons/io";
 import ConfirmTransactionModal from "../portals/confirmTransaction";
+import PrevNavigation from "./PrevNavigation";
 
 export default function TransactionForm() {
   const { addNewItem } = useContext(DataContext);
@@ -37,20 +38,15 @@ export default function TransactionForm() {
 
   return (
     <>
-      <div className="px-2 md:px-5 lg:w-1/2 mx-auto py-6 relative">
+      <div className=" md:px-5 lg:w-1/2 mx-auto py-6 relative md:border my-5 border-[#0c4244] px-4">
         <Form
           onSubmit={handleSubmit(onSubmit)}
           method="post"
-          className="p-6 rounded-lg bg-[#032a2e] shadow-lg space-y-6 text-sm font-Inter text-white"
+          className=" rounded-lg  space-y-6 text-sm font-Inter text-white py-2"
         >
-          <div className="flex items-center gap-3 mb-4">
-            <IoIosCloseCircle
-              className="absolute  top-0 right-0 m-2 text-4xl hover:text-cyan-400 active:scale-90 transition-all cursor-pointer"
-              onClick={() => navigate(-1)}
-            />
-            <h2 className="text-xl font-semibold tracking-wide">
-              New Transaction
-            </h2>
+          <div className="flex items-center mb-4">
+            <PrevNavigation className="absolute  top-0 right-0 m-2 " />
+            <h2 className="text-xl font-semibold ">New Transaction</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -61,7 +57,7 @@ export default function TransactionForm() {
                 {...register("companyName", {
                   required: "Company name is required",
                 })}
-                className="w-full px-3 py-2 rounded-md bg-[#094247] focus:outline-none"
+                className="w-full px-3 py-2 rounded-sm bg-[#094247] focus:outline-none"
               />
               {errors.companyName && (
                 <p className="text-red-400 text-xs mt-1">
@@ -102,7 +98,7 @@ export default function TransactionForm() {
                 {...register("product", {
                   required: "Product name is required",
                 })}
-                className="w-full px-3 py-2 rounded-md bg-[#094247] focus:outline-none"
+                className="w-full px-3 py-2 rounded-sm bg-[#094247] focus:outline-none"
               />
               {errors.product && (
                 <p className="text-red-400 text-xs mt-1">
@@ -122,7 +118,7 @@ export default function TransactionForm() {
                 })}
                 type="number"
                 onWheel={(e) => e.target.blur()}
-                className="w-full px-3 py-2 rounded-md bg-[#094247] focus:outline-none"
+                className="w-full px-3 py-2 rounded-sm bg-[#094247] focus:outline-none"
               />
               {errors.quantity && (
                 <p className="text-red-400 text-xs mt-1">
@@ -142,7 +138,7 @@ export default function TransactionForm() {
                 })}
                 type="number"
                 onWheel={(e) => e.target.blur()}
-                className="w-full px-3 py-2 rounded-md bg-[#094247] focus:outline-none"
+                className="w-full px-3 py-2 rounded-sm bg-[#094247] focus:outline-none"
               />
               {errors.unitPrice && (
                 <p className="text-red-400 text-xs mt-1">
@@ -168,7 +164,7 @@ export default function TransactionForm() {
                 })}
                 type="number"
                 onWheel={(e) => e.target.blur()}
-                className="w-full px-3 py-2 rounded-md bg-[#094247] focus:outline-none"
+                className="w-full px-3 py-2 rounded-sm bg-[#094247] focus:outline-none"
               />
               {errors.totalPaid && (
                 <p className="text-red-400 text-xs mt-1">
@@ -220,7 +216,7 @@ export default function TransactionForm() {
 
             {/* Submit */}
             <div className="md:col-span-2">
-              <button className="w-full py-2 rounded-md bg-cyan-600 hover:bg-cyan-700 text-white font-medium active:scale-95 transition-transform">
+              <button className="w-full py-2 rounded-sm bg-cyan-600 hover:bg-cyan-700 text-white font-medium active:scale-95 transition-transform">
                 Submit Transaction
               </button>
             </div>

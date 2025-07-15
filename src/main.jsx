@@ -63,7 +63,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/m-manager/secret/alahomora",
+    path: "/secret/alahomora",
     element: (
       <Suspense fallback={<Fallback />}>
         <AdminPannel />
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/m-manager/secret/alahomora/transaction/:id",
+    path: "/secret/alahomora/transaction/:id",
     element: (
       <Suspense fallback={<Fallback />}>
         <History />
