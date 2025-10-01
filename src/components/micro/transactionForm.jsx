@@ -1,8 +1,7 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
 import { DataContext } from "../../store/store";
 import { useForm } from "react-hook-form";
-import { IoIosCloseCircle } from "react-icons/io";
 import ConfirmTransactionModal from "../portals/confirmTransaction";
 import PrevNavigation from "./PrevNavigation";
 
@@ -38,14 +37,14 @@ export default function TransactionForm() {
 
   return (
     <>
-      <div className=" md:px-5 lg:w-1/2 mx-auto py-6 relative md:border my-5 border-neutral-800 px-4">
+      <div className=" md:px-5 lg:w-1/2 mx-auto py-6 relative px-4">
         <Form
           onSubmit={handleSubmit(onSubmit)}
           method="post"
-          className=" rounded-lg  space-y-6 text-sm font-Inter text-white py-2"
+          className=" rounded-lg  space-y-6 text-sm font-Inter dark:text-white  md:border  border-neutral-800 p-5 "
         >
+          <PrevNavigation className="absolute   top-0 right-0 m-10 " />
           <div className="flex items-center mb-4">
-            <PrevNavigation className="absolute  top-0 right-0 m-2 " />
             <h2 className="text-xl font-semibold ">New Transaction</h2>
           </div>
 
@@ -57,7 +56,7 @@ export default function TransactionForm() {
                 {...register("companyName", {
                   required: "Company name is required",
                 })}
-                className="w-full px-3 py-2 rounded-sm bg-neutral-800 focus:outline-none"
+                className="w-full px-3 py-2 rounded-sm border border-neutral-500 dark:bg-neutral-800 focus:outline-none"
               />
               {errors.companyName && (
                 <p className="text-red-400 text-xs mt-1">
@@ -69,7 +68,7 @@ export default function TransactionForm() {
             {/* Transaction Type */}
             <div className="md:col-span-2">
               <label className="block mb-1 font-medium">Transaction Type</label>
-              <div className="flex gap-6 text-sm text-neutral-200">
+              <div className="flex gap-6 text-sm text-black dark:text-white">
                 {["sold", "purchased"].map((type) => (
                   <label key={type} className="flex items-center gap-1">
                     <input
@@ -98,7 +97,7 @@ export default function TransactionForm() {
                 {...register("product", {
                   required: "Product name is required",
                 })}
-                className="w-full px-3 py-2 rounded-sm bg-neutral-800 focus:outline-none"
+                className="w-full px-3 py-2 rounded-sm border border-neutral-500 dark:bg-neutral-800 focus:outline-none"
               />
               {errors.product && (
                 <p className="text-red-400 text-xs mt-1">
@@ -118,7 +117,7 @@ export default function TransactionForm() {
                 })}
                 type="number"
                 onWheel={(e) => e.target.blur()}
-                className="w-full px-3 py-2 rounded-sm bg-neutral-800 focus:outline-none"
+                className="w-full px-3 py-2 rounded-sm border border-neutral-500 dark:bg-neutral-800 focus:outline-none"
               />
               {errors.quantity && (
                 <p className="text-red-400 text-xs mt-1">
@@ -138,7 +137,7 @@ export default function TransactionForm() {
                 })}
                 type="number"
                 onWheel={(e) => e.target.blur()}
-                className="w-full px-3 py-2 rounded-sm bg-neutral-800 focus:outline-none"
+                className="w-full px-3 py-2 rounded-sm border border-neutral-500 dark:bg-neutral-800 focus:outline-none"
               />
               {errors.unitPrice && (
                 <p className="text-red-400 text-xs mt-1">
@@ -164,7 +163,7 @@ export default function TransactionForm() {
                 })}
                 type="number"
                 onWheel={(e) => e.target.blur()}
-                className="w-full px-3 py-2 rounded-sm bg-neutral-800 focus:outline-none"
+                className="w-full px-3 py-2 rounded-sm border border-neutral-500 dark:bg-neutral-800 focus:outline-none"
               />
               {errors.totalPaid && (
                 <p className="text-red-400 text-xs mt-1">
@@ -174,16 +173,16 @@ export default function TransactionForm() {
             </div>
 
             {/* Total & Due */}
-            <div className="md:col-span-2 text-neutral-300 text-sm">
+            <div className="md:col-span-2 text-black dark:text-white text-sm">
               <p>
                 Total amount:{" "}
-                <span className="text-white font-semibold">
+                <span className="dark:text-white text-black font-semibold">
                   {total.toLocaleString()}
                 </span>
               </p>
               <p>
                 Due amount:{" "}
-                <span className="text-white font-semibold">
+                <span className="dark:text-white text-black font-semibold">
                   {due.toLocaleString()}
                 </span>
               </p>
@@ -192,7 +191,7 @@ export default function TransactionForm() {
             {/* Payment Method */}
             <div className="md:col-span-2">
               <label className="block mb-1 font-medium">Payment Method</label>
-              <div className="flex gap-6 text-sm text-neutral-200">
+              <div className="flex gap-6 text-sm text-black dark:text-white">
                 {["cash", "bank", "bkash"].map((method) => (
                   <label key={method} className="flex items-center gap-1">
                     <input

@@ -6,7 +6,7 @@ export default function TableElement({ idx, items, admin = false }) {
   return (
     <div
       key={idx}
-      className="relative  bg-[#181a1a] text-sm text-center rounded-sm p-3 my-4 font-Ubuntu capitalize"
+      className="relative bg-neutral-200 text-black dark:text-white  dark:bg-[#181a1a] text-sm text-center rounded-sm p-3 my-4 font-Ubuntu capitalize"
     >
       {admin && items?.updateHistory?.length > 0 && (
         <span

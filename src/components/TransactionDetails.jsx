@@ -9,8 +9,8 @@ export default function TransactionDetails() {
   const { data, isPending } = useTransactionById(id);
   const { totalDue } = useContext(DataContext);
   return (
-    <>
-      <div className="w-full border border-neutral-800 md:w-3/5 lg:w-1/2 mx-auto p-6  text-sm font-Inter  my-5 md:border  ">
+    <div className="w-full border border-transparent  md:w-3/5 lg:w-1/2 mx-auto   text-sm font-Inter    ">
+      <div className="md:border border-neutral-800 my-7 p-5">
         <PrevNavigation />
         <h2 className="text-2xl font-bold mb-4  ">Transaction Details</h2>
         <div className="space-y-2">
@@ -37,7 +37,7 @@ export default function TransactionDetails() {
           <div className="flex justify-between">
             <span className="font-medium">State:</span>
             <span
-              className={`px-2  ${
+              className={`px-2 text-white  ${
                 data?.state?.toLowerCase() === "paid"
                   ? "bg-green-700"
                   : "bg-red-700"
@@ -94,19 +94,19 @@ export default function TransactionDetails() {
                 search: "?update=true",
               }}
             >
-              <button className="h-10 w-full  bg-[#12415a] rounded-sm hover:bg-[#0076b681] active:scale-85 transition-all">
+              <button className="h-10 w-full text-white bg-[#12415a] rounded-sm hover:bg-[#0076b681] active:scale-85 transition-all">
                 Update
               </button>
             </Link>
           )}
           <button
             onClick={() => window.print()}
-            className="w-1/2  flex justify-center items-center h-10  bg-[#094347]  rounded-sm hover:bg-[#395d66fa] active:scale-85 transition-all"
+            className="w-1/2  text-white flex justify-center items-center h-10  bg-[#094347]  rounded-sm hover:bg-[#395d66fa] active:scale-85 transition-all"
           >
             Print
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }

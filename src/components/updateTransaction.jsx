@@ -5,7 +5,6 @@ import {
   Form,
   useNavigate,
 } from "react-router-dom";
-import { IoArrowBackCircle } from "react-icons/io5";
 import { useTransactionById } from "./hooks/findTransactionsById";
 import { DataContext } from "../store/store";
 import { useForm } from "react-hook-form";
@@ -46,9 +45,9 @@ export default function UpdateTransaction() {
       {update === "true" && (
         <Form
           onSubmit={handleSubmit(onSubmit)}
-          className="px-1 md:w-3/5 lg:w-1/2 mx-auto h-full md:border border-[#0c4244] my-5"
+          className="px-1 md:w-3/5 lg:w-1/2 mx-auto h-full border border-transparent "
         >
-          <div className="w-full mx-auto space-y-3 font-Inter text-sm px-5 py-2">
+          <div className="w-full mx-auto space-y-3 font-Inter text-sm my-5 md:border border-neutral-700 p-4">
             <PrevNavigation />
             <h2 className="text-2xl font-bold mb-6 text-center pb-2">
               Transaction Update
@@ -164,7 +163,7 @@ export default function UpdateTransaction() {
             <div className="w-full flex justify-center">
               <button
                 type="submit"
-                className="bg-[#095358] w-1/2 px-10 py-2 hover:bg-[#3a696d] transition-all rounded-sm active:scale-85"
+                className="bg-[#095358] w-1/2 px-10 py-2 hover:bg-[#3a696d] transition-all rounded-sm active:scale-85 text-white"
               >
                 Update
               </button>

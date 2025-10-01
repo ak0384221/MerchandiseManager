@@ -69,7 +69,7 @@ export default function FilterTable({ filter, setFilter, admin = false }) {
             title="Latest first"
           >
             <FaLongArrowAltUp
-              className={`text-xl ${
+              className={`text-xl  ${
                 filter.orderBy == "desc" && "text-blue-500"
               }`}
             />
@@ -97,7 +97,7 @@ export default function FilterTable({ filter, setFilter, admin = false }) {
         {/* Right: Add New Item Button */}
         {admin == false && (
           <Link to="/m-manager/add-new-item">
-            <FaCirclePlus className="text-2xl hover:scale-110 transition-all  text-white" />
+            <FaCirclePlus className="text-2xl hover:scale-110 transition-all  dark:text-white" />
           </Link>
         )}
       </div>

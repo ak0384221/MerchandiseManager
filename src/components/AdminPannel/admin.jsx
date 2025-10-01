@@ -16,21 +16,23 @@ export default function AdminPannel() {
 
   return (
     <>
-      <Header Heading={"M-Pannel"} />
+      <div className=" min-h-screen dark:bg-black dark:text-white">
+        <Header Heading={"M-Pannel"} />
 
-      {dataObj.data && (
-        <div className="md:w-4/5 mx-auto  px-2 ">
-          <div className=""></div>
-          <TableHeading admin={true} />
-          <FilterTable filter={filter} setFilter={setFilter} admin={true} />
+        {dataObj.data && (
+          <div className="md:w-4/5 mx-auto  px-2 ">
+            <div className=""></div>
+            <TableHeading admin={true} />
+            <FilterTable filter={filter} setFilter={setFilter} admin={true} />
 
-          {dataObj.data?.map((items, idx) => (
-            <Link key={idx} to={`transaction/${items?.transactionId}`}>
-              <TableElement idx={idx} items={items} admin={true} />
-            </Link>
-          ))}
-        </div>
-      )}
+            {dataObj.data?.map((items, idx) => (
+              <Link key={idx} to={`transaction/${items?.transactionId}`}>
+                <TableElement idx={idx} items={items} admin={true} />
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
     </>
   );
 }

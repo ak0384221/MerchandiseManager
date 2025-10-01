@@ -6,7 +6,7 @@ export default function PrevNavigation({ className }) {
 
   return (
     <>
-      <div className="flex justify-end items-center">
+      <div className="flex justify-end items-center ">
         <IoArrowBackCircle
           className={`text-4xl  mb-5 active:scale-85 transition-all hover:text-neutral-500 cursor-pointer ${className}`}
           onClick={() => navigate(-1)}
