@@ -14,7 +14,7 @@ export default function History() {
       <div className=" my-10 px-4 md:w-3/5 lg:w-1/2  mx-auto">
         <PrevNavigation />
 
-        <div className=" mx-auto  text-sm font-Inter  border border-[#0c4244] p-4">
+        <div className=" mx-auto  text-sm font-Inter  border border-neutral-700 p-4">
           <h2 className="text-2xl font-bold mb-4  my-2">Transaction Details</h2>
           <div className="space-y-2">
             <div className="flex justify-between">

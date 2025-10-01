@@ -2,7 +2,7 @@ export default function UpdateHistory({ item, index }) {
   return (
     <div
       key={index}
-      className="border border-[#043235] rounded-sm   p-2 gap-2 w-full  "
+      className="border border-neutral-700 rounded-sm   p-2 gap-2 w-full  "
     >
       <div className="flex justify-between text-sm">
         <span className="font-medium">In Charge:</span>

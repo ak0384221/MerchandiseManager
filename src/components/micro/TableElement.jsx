@@ -1,13 +1,12 @@
 import { useContext } from "react";
 import { DataContext } from "../../store/store";
-import { IoNotificationsCircle } from "react-icons/io5";
 
 export default function TableElement({ idx, items, admin = false }) {
   const { totalDue, formatDate, formatToK } = useContext(DataContext);
   return (
     <div
       key={idx}
-      className="relative  bg-[#0b393f] text-sm text-center rounded-sm p-3 my-4 font-Ubuntu capitalize"
+      className="relative  bg-[#181a1a] text-sm text-center rounded-sm p-3 my-4 font-Ubuntu capitalize"
     >
       {admin && items?.updateHistory?.length > 0 && (
         <span

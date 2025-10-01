@@ -22,13 +22,13 @@ export default function FilterTable({ filter, setFilter, admin = false }) {
             }
             className="border px-2 py-1 rounded text-sm "
           >
-            <option className="bg-[#0d3f41]" value="purchased">
+            <option className="bg-neutral-500" value="purchased">
               Purchased
             </option>
-            <option className="bg-[#0d3f41]" value="sold">
+            <option className="bg-neutral-500" value="sold">
               Sold
             </option>
-            <option className="bg-[#0d3f41]" value="all">
+            <option className="bg-neutral-500" value="all">
               All
             </option>
           </select>
@@ -44,13 +44,13 @@ export default function FilterTable({ filter, setFilter, admin = false }) {
             }
             className="border   px-2 py-1 rounded text-sm "
           >
-            <option className="bg-[#0d3f41]" value="all">
+            <option className="bg-neutral-500" value="all">
               All
             </option>
-            <option className="bg-[#0d3f41]" value="pending">
+            <option className="bg-neutral-500" value="pending">
               Pending
             </option>
-            <option className="bg-[#0d3f41]" value="paid">
+            <option className="bg-neutral-500" value="paid">
               Paid
             </option>
           </select>

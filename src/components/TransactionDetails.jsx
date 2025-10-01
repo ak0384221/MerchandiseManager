@@ -10,7 +10,7 @@ export default function TransactionDetails() {
   const { totalDue } = useContext(DataContext);
   return (
     <>
-      <div className="w-full md:w-3/5 lg:w-1/2 mx-auto p-6  text-sm font-Inter  my-5 md:border border-[#0c4244] ">
+      <div className="w-full border border-neutral-800 md:w-3/5 lg:w-1/2 mx-auto p-6  text-sm font-Inter  my-5 md:border  ">
         <PrevNavigation />
         <h2 className="text-2xl font-bold mb-4  ">Transaction Details</h2>
         <div className="space-y-2">

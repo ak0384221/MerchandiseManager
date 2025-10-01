@@ -22,6 +22,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import DataContextProvider from "./store/store.jsx";
 import Fallback from "./components/fallback/fallback.jsx";
 import TransactionDetails from "./components/TransactionDetails.jsx";
+import Dashboard from "./dashboard.jsx";
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
@@ -56,6 +57,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Fallback />}>
             <UpdateTransaction />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/m-manager/dashboard",
+        element: (
+          <Suspense fallback={<Fallback />}>
+            <Dashboard />
           </Suspense>
         ),
       },

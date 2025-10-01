@@ -38,7 +38,7 @@ export default function TransactionForm() {
 
   return (
     <>
-      <div className=" md:px-5 lg:w-1/2 mx-auto py-6 relative md:border my-5 border-[#0c4244] px-4">
+      <div className=" md:px-5 lg:w-1/2 mx-auto py-6 relative md:border my-5 border-neutral-800 px-4">
         <Form
           onSubmit={handleSubmit(onSubmit)}
           method="post"
@@ -57,7 +57,7 @@ export default function TransactionForm() {
                 {...register("companyName", {
                   required: "Company name is required",
                 })}
-                className="w-full px-3 py-2 rounded-sm bg-[#094247] focus:outline-none"
+                className="w-full px-3 py-2 rounded-sm bg-neutral-800 focus:outline-none"
               />
               {errors.companyName && (
                 <p className="text-red-400 text-xs mt-1">
@@ -98,7 +98,7 @@ export default function TransactionForm() {
                 {...register("product", {
                   required: "Product name is required",
                 })}
-                className="w-full px-3 py-2 rounded-sm bg-[#094247] focus:outline-none"
+                className="w-full px-3 py-2 rounded-sm bg-neutral-800 focus:outline-none"
               />
               {errors.product && (
                 <p className="text-red-400 text-xs mt-1">
@@ -118,7 +118,7 @@ export default function TransactionForm() {
                 })}
                 type="number"
                 onWheel={(e) => e.target.blur()}
-                className="w-full px-3 py-2 rounded-sm bg-[#094247] focus:outline-none"
+                className="w-full px-3 py-2 rounded-sm bg-neutral-800 focus:outline-none"
               />
               {errors.quantity && (
                 <p className="text-red-400 text-xs mt-1">
@@ -138,7 +138,7 @@ export default function TransactionForm() {
                 })}
                 type="number"
                 onWheel={(e) => e.target.blur()}
-                className="w-full px-3 py-2 rounded-sm bg-[#094247] focus:outline-none"
+                className="w-full px-3 py-2 rounded-sm bg-neutral-800 focus:outline-none"
               />
               {errors.unitPrice && (
                 <p className="text-red-400 text-xs mt-1">
@@ -164,7 +164,7 @@ export default function TransactionForm() {
                 })}
                 type="number"
                 onWheel={(e) => e.target.blur()}
-                className="w-full px-3 py-2 rounded-sm bg-[#094247] focus:outline-none"
+                className="w-full px-3 py-2 rounded-sm bg-neutral-800 focus:outline-none"
               />
               {errors.totalPaid && (
                 <p className="text-red-400 text-xs mt-1">

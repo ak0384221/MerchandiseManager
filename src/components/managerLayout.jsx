@@ -13,9 +13,9 @@ export default function ManagerLayout() {
   return (
     <>
       <Header Heading={"M-Manager"} />
-      <div className="box  md:w-4/5 mx-auto relative  min-h-[70vh]     overflow-hidden px-2">
+      <div className="box  md:w-3/5 mx-auto relative  min-h-[70vh]     overflow-hidden px-2">
         {dataObj?.data && (
-          <div className="  border border-[#0d3f41]  px-2">
+          <div className="  border border-[#212424]  px-2">
             <TableHeading />
             <FilterTable filter={filter} setFilter={setFilter} />
             {dataObj?.data?.map((items, idx) => (
