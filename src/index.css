@@ -6,3 +6,7 @@
   --font-Ubuntu: "Ubuntu", "sans-serif";
   --font-Inter: "Inter", "sans-serif";
 }
+
+body {
+  background-color: black;
+}
